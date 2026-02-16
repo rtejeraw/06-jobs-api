@@ -1,0 +1,161 @@
+openapi: 3.0.0
+info:
+    title: CTD-Project-API
+    version: 1.0.0
+    description: ""
+servers:
+    - url: "https://zero6-jobs-api-w1mz.onrender.com/api/v1"
+paths:
+    /auth/register:
+        post:
+            tags:
+                - Auth
+            summary: Register
+            responses:
+                "200":
+                    description: ""
+                    headers: {}
+
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                email:
+                                    type: string
+                                    format: email
+                                password:
+                                    type: string
+                        example:
+                            name: anna
+                            email: anna@gmail.com
+                            password: password
+    /auth/login:
+        post:
+            tags:
+                - Auth
+            summary: Login
+            responses:
+                "200":
+                    description: ""
+                    headers: {}
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    format: email
+                                password:
+                                    type: string
+                        example:
+                            email: zeke@gmail.com
+                            password: password
+    /plots:
+        get:
+            tags:
+                - Plots
+            summary: GetPlots
+            responses:
+                "200":
+                    description: ""
+                    headers: {}
+            security:
+                - BearerAuth: []
+        post:
+            tags:
+                - Plots
+            summary: NewPlot
+            responses:
+                "200":
+                    description: ""
+                    headers: {}
+            security:
+                - BearerAuth: []
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                unitType:
+                                    type: string
+                        example:
+                            unitType: Cabbage
+    /plots/{id}:
+        get:
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                      type: string
+                  description: The plot ID
+            tags:
+                - Plots
+            summary: GetPlot
+            responses:
+                "200":
+                    description: ""
+                    headers: {}
+            security:
+                - BearerAuth: []
+        patch:
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                      type: string
+                  description: The plot ID
+            tags:
+                - Plots
+            summary: UpdatePlot
+            responses:
+                "200":
+                    description: ""
+                    headers: {}
+            security:
+                - BearerAuth: []
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                unitType:
+                                    type: string
+                        example:
+                            unitType: Cabbage
+        delete:
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                      type: string
+                  description: The plot ID
+            tags:
+                - Plots
+            summary: DeletePlot
+            responses:
+                "200":
+                    description: ""
+                    headers: {}
+            security:
+                - BearerAuth: []
+components:
+    securitySchemes:
+        BearerAuth:
+            type: http
+            scheme: bearer
+tags:
+    - name: Auth
+      description: ""
+    - name: Plots
+      description: ""
