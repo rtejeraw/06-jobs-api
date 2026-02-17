@@ -65,7 +65,7 @@ const deletePlot = async (req, res) => {
 		throw new NotFoundError(`No plot with id ${plotId}`);
 	}
 
-	res.status(StatusCodes.OK).send();
+	res.status(StatusCodes.OK).json({ msg: "The plot entry was deleted." });
 };
 
 module.exports = {
