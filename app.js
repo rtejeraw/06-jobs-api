@@ -44,11 +44,7 @@ app.use(xss());
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 // routes
-app.get("/", (req, res) => {
-	res.send(
-		"<h1>Welcome to the Plot Management API</h1></br><a href='/api-docs'>API Documentation</a>	",
-	);
-});
+app.use(express.static("public"));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/plots", authenticationMiddleware, plotsRouter);
 
